@@ -107,5 +107,22 @@
 
 .save-transfer{margin-top:12px;padding-top:12px;border-top:1px solid #594833}.save-transfer>b{color:#e9bd67;font-size:13px}.save-transfer>p{margin:5px 0 9px;color:#8e8372;font-size:11px;line-height:1.5}.save-transfer-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.save-transfer-actions button{min-height:38px!important;margin:0!important;font-size:12px}.save-transfer-actions .danger{background:#54201b}.save-import{display:none;margin-top:8px}.save-import.show{display:grid;grid-template-columns:1fr auto;gap:6px}.save-import textarea{min-height:68px;padding:8px;border:1px solid #70583a;background:#080706;color:#f2e3c7;font:11px/1.45 monospace;resize:vertical}.save-import button{min-width:84px;min-height:68px!important;margin:0!important}@media(max-width:480px){.save-import.show{grid-template-columns:1fr}.save-import button{min-height:40px!important}}
 
+/* v2.5.6 combat presentation: sprite-driven throws, impact frames and enemy facing. */
+.monster-face{transform:scaleX(-1);transform-origin:center bottom}
+.monster.boss .monster-face{transform:scale(-1.16,1.16)}
+.monster.bounty .monster-face{transform:none}
+.battle-projectile{width:58px;height:58px;filter:drop-shadow(0 0 5px var(--glow));animation:throw-star-v256 .62s cubic-bezier(.16,.72,.2,1) var(--delay) forwards}
+.battle-projectile .battle-star{inset:0;z-index:3}
+.battle-projectile .projectile-echo{z-index:2;opacity:.34;pointer-events:none}
+.battle-projectile .echo-1{transform:translateX(-16px) scale(.82);filter:saturate(.9) brightness(1.35)}
+.battle-projectile .echo-2{transform:translateX(-29px) scale(.62);opacity:.15;filter:saturate(.75) brightness(1.55)}
+@keyframes throw-star-v256{0%{left:12%;opacity:0;transform:translateY(13px) rotate(0) scale(.72)}9%{opacity:1}38%{transform:translateY(-8px) rotate(470deg) scale(.94)}78%{left:76%;opacity:1;transform:translateY(3px) rotate(930deg) scale(1.04)}100%{left:81%;opacity:0;transform:translateY(8px) rotate(1080deg) scale(.72)}}
+.impact{right:5%;top:27%;width:128px;height:128px;background:url("assets/combat-impact-v256.png") 0 0/400% 200% no-repeat;image-rendering:pixelated;filter:drop-shadow(0 0 7px #ffb12c);opacity:0}
+.impact:before,.impact:after{content:none}
+.impact.burst{animation:impact-sprite-v256 .48s steps(1,end)}
+@keyframes impact-sprite-v256{0%{opacity:1;background-position:0 0}12.5%{background-position:33.333% 0}25%{background-position:66.667% 0}37.5%{background-position:100% 0}50%{background-position:0 100%}62.5%{background-position:33.333% 100%}75%{background-position:66.667% 100%}87.5%{opacity:1;background-position:100% 100%}100%{opacity:0;background-position:100% 100%}}
+.damage-text{right:8%;top:22%;padding:3px 6px;background:#090806cc;border-left:4px solid #ffd65f;color:#fff0a2;font-size:19px;letter-spacing:.4px;text-shadow:2px 2px #8d261d;box-shadow:3px 3px 0 #050403}
+@media(max-width:430px){.battle-projectile{width:46px;height:46px}.battle-projectile .echo-1{transform:translateX(-12px) scale(.8)}.battle-projectile .echo-2{transform:translateX(-22px) scale(.6)}.impact{right:-2%;top:27%;width:104px;height:104px}.damage-text{right:4%;font-size:15px}}
+
 /* v2.5.5 responsive intro and settings */
 .intro-screen{overflow-y:auto;overscroll-behavior:contain}.intro-panel{max-height:calc(100dvh - 40px);overflow-y:auto;scrollbar-color:#70583a #0b0908}.intro-settings.show{max-height:none;overflow:visible}@media(max-width:680px){.intro-screen{display:block;padding:12px;background-position:60% center}.intro-panel{width:100%;max-height:none;margin:0 auto;padding:16px;overflow:visible}.intro-panel h1{margin-top:3px;font-size:32px}.intro-panel>p{margin-bottom:14px;font-size:14px}.intro-actions{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:7px}.intro-actions button,.intro-actions a{min-width:0;padding:8px}.intro-settings{margin-top:10px;padding:12px}.intro-settings h2{font-size:18px}.intro-settings label{min-height:46px;font-size:14px}.save-transfer-actions{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.save-transfer-actions button{min-width:0;padding:7px 3px;font-size:11px}.intro-panel>small{font-size:11px}}@media(max-width:380px){.intro-screen{padding:8px}.intro-panel{padding:13px}.intro-panel h1{font-size:29px}.intro-panel>p br{display:none}.intro-actions .intro-start{grid-column:1/-1;grid-row:auto;min-height:50px}.intro-actions{grid-template-columns:1fr 1fr}.intro-settings label{font-size:13px}.save-transfer>p{font-size:10px}}
